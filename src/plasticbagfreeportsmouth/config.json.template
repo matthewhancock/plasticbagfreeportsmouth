@@ -1,0 +1,15 @@
+﻿{
+  "takethepledge": {
+    "form": {
+      "email": {
+        "to": ""
+      }
+    }
+  },
+  "smtp": {
+    "from": "",
+    "username": "",
+    "password": "",
+    "server": ""
+  }
+}
