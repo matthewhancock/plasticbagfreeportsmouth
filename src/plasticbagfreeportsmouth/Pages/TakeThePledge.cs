@@ -25,7 +25,7 @@ namespace plasticbagfreeportsmouth.Pages {
 
 		public override string Description {
 			get {
-				return "How to get involved and help elect Democrats in Portsmouth, New Hampshire.";
+				return "All businesses in Portsmouth, New Hampshire, including non-profits, are welcome to take the pledge to not issue single-use plastic shopping bags.";
 			}
 		}
 
