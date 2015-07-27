@@ -51,7 +51,7 @@ margin:0 auto;
 background-color:#fff
 }
 #h {
-padding: 10px 0 15px;
+padding: 10px 0;
 margin: 0;
 font-size:62px;
 color: #8ec36f;
@@ -69,8 +69,7 @@ margin:0 10px;
 }
 #n {
 display:flex;
-justify-content:center;
-margin-top:10px
+justify-content:center
 }
 #n a {
 font-size:32px;
