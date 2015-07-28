@@ -6,6 +6,8 @@ color: #222;
 font-size: 13px;
 background-size:cover;
 background-repeat:no-repeat;
+background-position:center center;
+background-attachment: fixed;
 }
 
 aside,main,nav,section{display:block}
@@ -23,7 +25,7 @@ cursor: pointer;
 
 h1,h2{
 font-weight:500;
-font-family:'Tungsten Rounded A', 'Tungsten Rounded B';
+font-family:'Champion Lightwt A', 'Champion Lightwt B';
 }
 h2 {
 /*color:#fff;
