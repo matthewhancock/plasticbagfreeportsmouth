@@ -40,7 +40,7 @@ namespace Util
                     private string _url;
                     public override string Output()
                     {
-                        return "<script src=\"" + _url + "\" async></script>";
+                        return "<script src=\"" + _url + "\" defer></script>";
                     }
                 }
             }
