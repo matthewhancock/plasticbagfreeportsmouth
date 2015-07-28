@@ -24,9 +24,9 @@ namespace plasticbagfreeportsmouth.Handlers {
                     e.Credentials = new System.Net.NetworkCredential(Application.Smtp.Username, Application.Smtp.Password);
                     try {
                         await e.SendMailAsync(new System.Net.Mail.MailMessage(Application.Smtp.From, Application.TakeThePledge.Form.EmailTo, "New Business Took Bag Free Portsmouth Pledge", message));
-                        await Context.Response.WriteAsync(Response.Substitute(Forms.TakeThePledge.HtmlID.FormContainer, "<div class=\"tac green\">Thanks! Your information has been received and you'll be contacted shortly.</div>"));
+                        await Context.Response.WriteAsync(Response.Substitute(Forms.TakeThePledge.HtmlID.FormContainer, "<div class=\"tac blue\">Thanks! Your information has been received and you'll be contacted shortly.</div>"));
                     } catch {
-                        await Context.Response.WriteAsync(Response.Substitute(Forms.TakeThePledge.HtmlID.FormContainer, $"<div class=\"tac green\">Sorry, there was an error processing the form.</div>"));
+                        await Context.Response.WriteAsync(Response.Substitute(Forms.TakeThePledge.HtmlID.FormContainer, $"<div class=\"tac blue\">Sorry, there was an error processing the form.</div>"));
                     }
                     break;
             }

@@ -4,8 +4,8 @@ margin:0;
 padding:0;
 color: #222;
 font-size: 13px;
-/*font-weight:500;
-font-family:'Tungsten Rounded A', 'Tungsten Rounded B'*/
+background-size:cover;
+background-repeat:no-repeat;
 }
 
 aside,main,nav,section{display:block}
@@ -51,11 +51,22 @@ margin:0 auto;
 background-color:#fff
 }
 #h {
-padding: 10px 0;
 margin: 0;
+display: flex;
+align-items:center
+}
+#h_h1 {
+padding: 10px 0;
 font-size:62px;
-color: #8ec36f;
-text-align:center
+color: #0054A6;
+text-align:center;
+flex:1
+}
+.h-logo {
+display:inline-block;
+width:200px;
+max-width:10vw;
+padding:10px;
 }
 #social {
 display:flex;
@@ -84,18 +95,19 @@ text-decoration:underline;
 #n[data-key='take-the-pledge'] #link-take-the-pledge {
 color: #666;
 }
-
 #m {
 flex:1;
 }
+#f {
+width:50%;
+margin:25px auto;
+}
 
 #content {
-padding:35px 12px;
+padding:20px 12px;
 font-family: 'Archer SSm A', 'Archer SSm B';
 font-size:16px;
-max-width:1024px;
-width:100%;
-margin:0 auto;
+margin:10px;
 border-style: solid;
 border-width:1px 0;
 border-color:#ddd
@@ -134,13 +146,13 @@ display:inline;
 .form {/*font-family:'Whitney A','Whitney B';*/width:300px;max-width:100%}
 .error {font-size:13px;color:#9b0034;margin-bottom:1em}
 
-.green {
-color: #8ec36f;
+.blue {
+color: #0054A6;
 }
 
 input[type=text], input[type=password], input[type=email], textarea {border-width:0 0 1px;border-style:solid;border-color:#999;width:100%;padding:5px;font-family:inherit;font-size:1em}
 input[type=text].narrow,input[type=password].narrow,input[type=email].narrow {width:30%}
-input[type=button],input[type=submit] {height:30px;vertical-align:bottom;margin-left:.2em;background-color:#8ec36f;color:#fff;font-family:inherit;border:0;font-size:1em;cursor:pointer}
+input[type=button],input[type=submit] {height:30px;vertical-align:bottom;margin-left:.2em;background-color:#0054A6;color:#fff;font-family:inherit;border:0;font-size:1em;cursor:pointer}
 input.error, textarea.error {
 border-color:#9b0034;
 }
@@ -153,3 +165,29 @@ textarea {border:1px solid #999;padding:5px;font-size:13px}
 #twitter-widget-0.twitter-timeline {width:100% !important;max-width:700px !important;}
 .twitter-tweet{margin:10px auto !important;}
 .fb_iframe_widget{display:block !important}
+
+@media (orientation : portrait), (max-height:1920px) {
+	body{
+		background-image:url('../image/bgp1366');
+	}
+}
+@media (orientation : portrait), (min-height:1920px) {
+	body{
+		background-image:url('../image/bgp1920');
+	}
+}
+@media (min-width: 2560px) {
+	body{
+	background-image:url('../image/bg2560');
+	}
+}
+@media (min-width: 1920px) {
+	body{
+	background-image:url('../image/bg1920');
+	}
+}
+@media (max-width: 1920px) {
+	body{
+	background-image:url('../image/bg1366');
+	}
+}

@@ -48,6 +48,9 @@ namespace plasticbagfreeportsmouth {
                         case "js":
                             await Javascript(rs);
                             break;
+                        case "image":
+                            await Image(rs, path[1]);
+                            break;
                         case "json":
                             if (pathc == 2) {
                                 await OutputPageJson(rs, path[1]);
@@ -81,11 +84,11 @@ namespace plasticbagfreeportsmouth {
         private static string tags = (new Util.Html.Head.Tag("link", new Dictionary<string, string> { { "rel", "stylesheet" }, { "type", "text/css" }, { "href", "/css/" } })).Output() +
             (new Util.Html.Head.Tag("link", new Dictionary<string, string> { { "rel", "stylesheet" }, { "type", "text/css" }, { "href", "//cloud.typography.com/607958/668628/css/fonts.css" } })).Output() +
             (new Util.Html.Head.Tag.Javascript("/js/")).Output(); // + (new Util.Html.Head.Tag.Javascript("//platform.twitter.com/widgets.js")).Output() + (new Util.Html.Head.Tag.Javascript("//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=175259985884771&version=v2.0")).Output();
-        private static string body_start = @"<div id=""c""><header id=""h"">Plastic Bag Free Portsmouth</header><nav id=""n"" data-key=""";
+        private static string body_start = $"<div id=\"c\"><header id=\"h\"><aside class=\"h-logo\">{Site.Svg.Sticker1}</aside><h1 id=\"h_h1\">Plastic Bag Free Portsmouth</h1><aside class=\"h-logo\">{Site.Svg.RiseAbovePlastics}</aside></header><nav id=\"n\" data-key=\"";
         private static string body_mid = $"\"><a id=\"link-{Pages.Home.Key}\" href=\"/{Pages.Home.Path}\" data-page=\"{Pages.Home.Key}\" onclick=\"return link(this)\">{Pages.Home.TitleNav}</a>" +
             $"<a id=\"link-{Pages.TakeThePledge.Key}\" href=\"/{Pages.TakeThePledge.Path}\" data-page=\"{Pages.TakeThePledge.Key}\" onclick=\"return link(this)\">{Pages.TakeThePledge.TitleNav}</a>" +
             "</nav><hr /><main id=\"m\"><section id=\"content\">";
-        private static string body_end = @"</section><aside id=""social""></aside></main><footer id=""f""></footer></div>";
+        private static string body_end = $"</section></main><footer id=\"f\">{Site.Svg.Sticker2}</footer></div>";
         private async Task OutputPage(HttpResponse Response, string Path, string[] Parameters = null) {
             Site.Page page = null;
 
@@ -110,7 +113,7 @@ namespace plasticbagfreeportsmouth {
         }
 
         private static string _css, _javascript = null;
-        private static Dictionary<string, byte[]> _fonts = new Dictionary<string, byte[]>();
+        private static Dictionary<string, byte[]> _images = new Dictionary<string, byte[]>();
         private async Task Css(HttpResponse Response) {
             Response.Headers.Add(Headers.Cache, Headers.Values.Cache);
             Response.ContentType = "text/css";
@@ -128,6 +131,26 @@ namespace plasticbagfreeportsmouth {
                 _javascript = await Util.File.LoadToString(_path, "_files/js/this.js");
             }
             await Response.WriteAsync(_javascript);
+        }
+        private async Task Image(HttpResponse Response, string Path) {
+            Response.Headers.Add(Headers.Cache, Headers.Values.Cache);
+            Response.ContentType = "image/jpeg";
+
+            byte[] file = null;
+            if (!_images.ContainsKey(Path)) {
+                try {
+                    file = await Util.File.LoadToBuffer(_path, $"_files/images/{Path}.jpg");
+                    _images.Add(Path, file);
+                } catch { }
+            } else {
+                file = _images[Path];
+            }
+            if (file != null) {
+                await Response.Body.WriteAsync(file, 0, file.Length);
+            } else {
+                Response.StatusCode = 404;
+                Response.Body.Close();
+            }
         }
         private async Task Json(HttpResponse Response, Site.Page Page) {
             Response.ContentType = "text/javascript";
