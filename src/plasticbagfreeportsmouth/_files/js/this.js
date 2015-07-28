@@ -112,7 +112,8 @@ function link(linkDOM) {
 var nav = document.getElementById('n');
 function OutputState(state, linkDOM) {
 	if (state) {
-		OutputContent(state.content, state.title, state.header);
+	    OutputContent(state.content, state.title, state.header);
+	    if (!nav) { nav = document.getElementById('n'); } // SVG slowing down DOM parsing in Chrome resulting in nav being null on initial load, despite existing.
 		nav.dataset['key'] = state.key;
 	}
 }
