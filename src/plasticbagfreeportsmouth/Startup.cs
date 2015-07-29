@@ -101,6 +101,7 @@ namespace plasticbagfreeportsmouth {
             if (page == null) {
                 await Error.FileNotFound(Response);
             } else {
+                Response.ContentType = "text/html";
                 await Util.Html.WriteOutput(Response, page.Title, tags + "<meta name=\"description\" content=\"" + page.Description + "\">", body_start + page.Key + body_mid + page.Content.Invoke() + body_end);
             }
         }
