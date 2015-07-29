@@ -44,7 +44,9 @@ letter-spacing:1px;
 
 
 #c {
+display:-webkit-flex;
 display:flex;
+-webkit-flex-direction:column;
 flex-direction:column;
 width:1024px;
 max-width:100%;
@@ -54,7 +56,9 @@ background-color:#fff
 }
 #h {
 margin: 0;
+display:-webkit-flex;
 display: flex;
+-webkit-align-items:center;
 align-items:center
 }
 #h_h1 {
@@ -71,8 +75,11 @@ max-width:20vw;
 padding:10px;
 }
 #social {
+display:-webkit-flex;
 display:flex;
+-webkit-justify-content:center;
 justify-content:center;
+-webkit-align-items:center;
 align-items:center;
 height:50px;
 margin:35px
@@ -81,7 +88,9 @@ margin:35px
 margin:0 10px;
 }
 #n {
+display:-webkit-flex;
 display:flex;
+-webkit-justify-content:center;
 justify-content:center
 }
 #n a {
