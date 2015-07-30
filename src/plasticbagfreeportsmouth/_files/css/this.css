@@ -110,6 +110,9 @@ color: #666;
 }
 #f {
 width:50%;
+/*have to set height for default android browser*/
+height:512px; /*half of container width = width:50%*/
+max-height:50vw; /*since the SVG is a circle this will shrink it when document width less than 512px*/
 margin:25px auto;
 }
 
