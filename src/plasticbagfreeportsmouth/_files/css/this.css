@@ -202,14 +202,14 @@ textarea {border:1px solid #999;padding:5px;font-size:13px}
 		background-image:url('../image/bgp1920');
 	}
 }
-@media (min-width: 2560px) {
-	body{
-	background-image:url('../image/bg2560');
-	}
-}
 @media (min-width: 1920px) {
 	body{
 	background-image:url('../image/bg1920');
+	}
+}
+@media (min-width: 2560px) {
+	body{
+	background-image:url('../image/bg2560');
 	}
 }
 @media (max-width: 1920px) {
