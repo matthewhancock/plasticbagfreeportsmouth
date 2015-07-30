@@ -7,6 +7,7 @@ using System.Linq;
 using Util.Http;
 using Microsoft.Framework.Runtime;
 using Microsoft.Framework.Configuration;
+using Util.AspNet;
 
 namespace plasticbagfreeportsmouth {
     public class Startup {
@@ -25,6 +26,7 @@ namespace plasticbagfreeportsmouth {
             }
             Application.LoadFromConfig(_config);
 
+            app.ForceHttps();
             app.Run(ProcessRequestAsync);
         }
 
