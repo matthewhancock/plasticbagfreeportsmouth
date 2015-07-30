@@ -88,7 +88,7 @@ namespace plasticbagfreeportsmouth {
         private static string body_mid = $"\"><a id=\"link-{Pages.Home.Key}\" href=\"/{Pages.Home.Path}\" data-page=\"{Pages.Home.Key}\" onclick=\"return link(this)\">{Pages.Home.TitleNav}</a>" +
             $"<a id=\"link-{Pages.TakeThePledge.Key}\" href=\"/{Pages.TakeThePledge.Path}\" data-page=\"{Pages.TakeThePledge.Key}\" onclick=\"return link(this)\">{Pages.TakeThePledge.TitleNav}</a>" +
             "</nav><hr /><main id=\"m\"><section id=\"content\">";
-        private static string body_end = @"</section><aside id=\"social\"><a href=\"https://twitter.com/BagFreePorts\" class=\"twitter-follow-button\" data-show-count=\"false\" data-size=\"large\" data-dnt=\"true\">Follow @BagFreePorts</a><div class=\"fb-like-box\" data-href=\"https://www.facebook.com/PlasticBagFreePortsmouth\" data-colorscheme=\"light\" data-show-faces=\"false\" data-header=\"false\" data-stream=\"false\" data-show-border=\"false\"></div></aside></main><footer id=\"f\">{Site.Svg.Sticker2}</footer></div>";
+        private static string body_end = $"</section><aside id=\"social\"><a href=\"https://twitter.com/BagFreePorts\" class=\"twitter-follow-button\" data-show-count=\"false\" data-size=\"large\" data-dnt=\"true\">Follow @BagFreePorts</a><div class=\"fb-like-box\" data-href=\"https://www.facebook.com/PlasticBagFreePortsmouth\" data-colorscheme=\"light\" data-show-faces=\"false\" data-header=\"false\" data-stream=\"false\" data-show-border=\"false\"></div></aside></main><footer id=\"f\">{Site.Svg.Sticker2}</footer></div>";
         private async Task OutputPage(HttpResponse Response, string Path, string[] Parameters = null) {
             Site.Page page = null;
 
