@@ -108,6 +108,19 @@ text-decoration:underline;
 #n[data-key='take-the-pledge'] #link-take-the-pledge {
 color: #666;
 }
+#social {
+display:-webkit-flex;
+display:flex;
+-webkit-justify-content:center;
+justify-content:center;
+-webkit-align-items:center;
+align-items:center;
+height:50px;
+margin:35px
+}
+#social > * {
+margin:0 10px;
+}
 #f {
 width:50%;
 /*have to set height for default android browser*/
