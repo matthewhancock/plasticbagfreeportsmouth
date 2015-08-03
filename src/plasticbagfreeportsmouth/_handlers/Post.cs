@@ -1,9 +1,14 @@
 ﻿using Microsoft.AspNet.Http;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
 namespace plasticbagfreeportsmouth.Handlers {
     public class Post {
+        private static CloudQueue _queue = null;
+
         public static async Task ProcessRequestAsync(HttpContext Context, string Action) {
             var form = Context.Request.Form;
             Context.Response.ContentType = "text/javascript";
@@ -19,11 +24,13 @@ namespace plasticbagfreeportsmouth.Handlers {
 
                     string message = $"Business Name: {businessName}\r\nAddress: {address}\r\nOwner/Manager: {manager}\r\nPhone Number: {phoneNumber}\r\nEmail: {email}\r\nWebsite: {website}";
 
-                    var e = new System.Net.Mail.SmtpClient(Application.Smtp.Server);
-                    e.EnableSsl = true;
-                    e.Credentials = new System.Net.NetworkCredential(Application.Smtp.Username, Application.Smtp.Password);
                     try {
-                        await e.SendMailAsync(new System.Net.Mail.MailMessage(Application.Smtp.From, Application.TakeThePledge.Form.EmailTo, "New Business Took Bag Free Portsmouth Pledge", message));
+                        var e = new Site.Email() { To = Application.TakeThePledge.Form.EmailTo, Subject = "New Business Took Bag Free Portsmouth Pledge", Body = message };
+
+                        if (_queue == null) {
+                            _queue = CloudStorageAccount.Parse($"DefaultEndpointsProtocol=https;AccountName={Application.Queue.Name};AccountKey={Application.Queue.Key}").CreateCloudQueueClient().GetQueueReference(Application.Queue.Name);
+                        }
+                        await _queue.AddMessageAsync(new CloudQueueMessage(JsonConvert.SerializeObject(e)));
                         await Context.Response.WriteAsync(Response.Substitute(Forms.TakeThePledge.HtmlID.FormContainer, "<div class=\"tac blue\">Thanks! Your information has been received and you'll be contacted shortly.</div>"));
                     } catch {
                         await Context.Response.WriteAsync(Response.Substitute(Forms.TakeThePledge.HtmlID.FormContainer, $"<div class=\"tac blue\">Sorry, there was an error processing the form.</div>"));

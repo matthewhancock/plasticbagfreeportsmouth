@@ -6,10 +6,8 @@
       }
     }
   },
-  "smtp": {
-    "from": "",
-    "username": "",
-    "password": "",
-    "server": ""
+  "queue": {
+    "name": "",
+    "key": ""
   }
 }
