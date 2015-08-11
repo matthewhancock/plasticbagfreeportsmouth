@@ -1,0 +1,52 @@
+﻿[
+  {
+    "name": "Ceres Bakery",
+    "url": "http://ceresbakery.com",
+    "address": "51 Penhallow Street"
+  },
+  {
+    "name": "Discover Portsmouth",
+    "url": "http://portsmouthhistory.org",
+    "address": "10 Middle Street"
+  },
+  {
+    "name": "Elemental Energy",
+    "url": "http://www.devinboydmassage.com",
+    "address": "621 Islington Street"
+  },
+  {
+    "name": "Flatbread Company",
+    "url": "http://flatbreadcompany.com/FlatbreadPortsmouth2010.html",
+    "address": "138 Congress Street"
+  },
+  {
+    "name": "Green Alliance",
+    "url": "http://greenalliance.biz",
+    "address": "75 Congress Street, Suite 304"
+  },
+  {
+    "name": "Pickwick's Mercantile",
+    "url": "http://pickwicksmercantile.com",
+    "address": "64 State Street"
+  },
+  {
+    "name": "Prelude",
+    "url": "http://preludeportsmouth.com",
+    "address": "65 Market Street"
+  },
+  {
+    "name": "Salt Cellar",
+    "url": "https://salt-cellar.com/our-stores/portsmouth-nh/",
+    "address": "7 Commercial Alley"
+  },
+  {
+    "name": "The Natural Dog and Holistic Cat",
+    "url": "http://thenaturaldog.us",
+    "address": "801 Islington Street"
+  },
+  {
+    "name": "3 Bridges Yoga",
+    "url": "http://3bridgesyoga.com",
+    "address": "185 High Street"
+  }
+]

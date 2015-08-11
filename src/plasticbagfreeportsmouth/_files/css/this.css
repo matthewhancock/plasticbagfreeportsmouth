@@ -105,6 +105,7 @@ text-align:center
 text-decoration:underline;
 }
 #n[data-key='home'] #link-home,
+#n[data-key='supporters'] #link-supporters,
 #n[data-key='take-the-pledge'] #link-take-the-pledge {
 color: #666;
 }
@@ -138,13 +139,8 @@ border-style: solid;
 border-width:1px 0;
 border-color:#ddd
 }
-#content a {color:#8ec36f}
+#content a {color:#0054A6}
 
-#link-donate {
-background-color:#8ec36f;
-color:#fff;
-margin-left:.4em
-}
 
 hr {
 border: 0;
@@ -153,9 +149,28 @@ width: 100%;
 iframe, img {
 border: 0;
 }
+blockquote:after {
+content:"“";
+font-family:Georgia, 'Times New Roman', Times, serif;
+color:#76BBE7;
+font-size:4em;
+z-index:-1;
+position:absolute;
+top:0;
+left:0
+}
 blockquote {
-margin: 0 5px;
-padding: 25px 45px;
+ font-size:1.3em;
+ margin:1em 3em;
+ padding:1em 1em 1em 1.5em;
+ position:relative;
+ z-index:0;
+}
+blockquote aside {
+text-align:right;
+font-style:italic;
+font-size:.8em;
+padding:.5em;
 }
 code {
 font-family: Consolas, monospace;

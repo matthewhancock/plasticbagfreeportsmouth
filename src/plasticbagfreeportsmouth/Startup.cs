@@ -11,18 +11,17 @@ using Util.AspNet;
 
 namespace plasticbagfreeportsmouth {
     public class Startup {
-        private string _path;
         private IConfiguration _config;
 
         public void Configure(IApplicationBuilder app, IApplicationEnvironment env) {
-            _path = env.ApplicationBasePath;
+            Application.LoadFromEnvironment(env);
 
             // load config
             _config = new ConfigurationBuilder().AddEnvironmentVariables().Build();
             // load local config file if no environmentvariables
             var envn = _config.Get("env") ?? "local";
             if (envn == "local") {
-                _config = new ConfigurationBuilder().AddJsonFile(_path + "/config.local.json").Build();
+                _config = new ConfigurationBuilder().AddJsonFile(env.ApplicationBasePath + "/config.local.json").Build();
             }
             Application.LoadFromConfig(_config);
 
@@ -81,6 +80,7 @@ namespace plasticbagfreeportsmouth {
         private static class Pages {
             public static Site.Page Home = new plasticbagfreeportsmouth.Pages.Home();
             public static Site.Page TakeThePledge = new plasticbagfreeportsmouth.Pages.TakeThePledge();
+            public static Site.Page Supporters = new plasticbagfreeportsmouth.Pages.Supporters();
         }
 
         private static string tags = (new Util.Html.Head.Tag("link", new Dictionary<string, string> { { "rel", "stylesheet" }, { "type", "text/css" }, { "href", "/css/" } })).Output() +
@@ -88,6 +88,7 @@ namespace plasticbagfreeportsmouth {
             (new Util.Html.Head.Tag.Javascript("/js/")).Output() + (new Util.Html.Head.Tag.Javascript("//platform.twitter.com/widgets.js")).Output() + (new Util.Html.Head.Tag.Javascript("//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=218352134886679")).Output();
         private static string body_start = $"<div id=\"c\"><header id=\"h\"><aside class=\"h-logo\">{Site.Svg.Sticker1}</aside><h1 id=\"h_h1\">Plastic Bag Free Portsmouth</h1><aside class=\"h-logo\">{Site.Svg.RiseAbovePlastics}</aside></header><nav id=\"n\" data-key=\"";
         private static string body_mid = $"\"><a id=\"link-{Pages.Home.Key}\" href=\"/{Pages.Home.Path}\" data-page=\"{Pages.Home.Key}\" onclick=\"return link(this)\">{Pages.Home.TitleNav}</a>" +
+            $"<a id=\"link-{Pages.Supporters.Key}\" href=\"/{Pages.Supporters.Path}\" data-page=\"{Pages.Supporters.Key}\" onclick=\"return link(this)\">{Pages.Supporters.TitleNav}</a>" +
             $"<a id=\"link-{Pages.TakeThePledge.Key}\" href=\"/{Pages.TakeThePledge.Path}\" data-page=\"{Pages.TakeThePledge.Key}\" onclick=\"return link(this)\">{Pages.TakeThePledge.TitleNav}</a>" +
             "</nav><hr /><main id=\"m\"><section id=\"content\">";
         private static string body_end = $"</section><aside id=\"social\"><a href=\"https://twitter.com/BagFreePorts\" class=\"twitter-follow-button\" data-show-count=\"false\" data-size=\"large\" data-dnt=\"true\">Follow @BagFreePorts</a><div class=\"fb-like-box\" data-href=\"https://www.facebook.com/PlasticBagFreePortsmouth\" data-colorscheme=\"light\" data-show-faces=\"false\" data-header=\"false\" data-stream=\"false\" data-show-border=\"false\"></div></aside></main><footer id=\"f\">{Site.Svg.Sticker2}</footer></div>";
@@ -98,6 +99,8 @@ namespace plasticbagfreeportsmouth {
                 page = Pages.Home;
             } else if (Path == Pages.TakeThePledge.Path) {
                 page = Pages.TakeThePledge;
+            } else if (Path == Pages.Supporters.Path) {
+                page = Pages.Supporters;
             }
 
             if (page == null) {
@@ -112,6 +115,8 @@ namespace plasticbagfreeportsmouth {
                 await Json(Response, Pages.Home);
             } else if (Key == Pages.TakeThePledge.Key) {
                 await Json(Response, Pages.TakeThePledge);
+            } else if (Key == Pages.Supporters.Key) {
+                await Json(Response, Pages.Supporters);
             }
         }
 
@@ -122,7 +127,7 @@ namespace plasticbagfreeportsmouth {
             Response.ContentType = "text/css";
 
             if (_css == null) {
-                _css = await Util.File.LoadToString(_path, "_files/css/this.css");
+                _css = await Util.File.LoadToString("_files/css/this.css");
             }
             await Response.WriteAsync(_css);
         }
@@ -131,7 +136,7 @@ namespace plasticbagfreeportsmouth {
             Response.ContentType = "text/javascript";
 
             if (_javascript == null) {
-                _javascript = await Util.File.LoadToString(_path, "_files/js/this.js");
+                _javascript = await Util.File.LoadToString("_files/js/this.js");
             }
             await Response.WriteAsync(_javascript);
         }
@@ -142,7 +147,7 @@ namespace plasticbagfreeportsmouth {
             byte[] file = null;
             if (!_images.ContainsKey(Path)) {
                 try {
-                    file = await Util.File.LoadToBuffer(_path, $"_files/images/{Path}.jpg");
+                    file = await Util.File.LoadToBuffer($"_files/images/{Path}.jpg");
                     _images.Add(Path, file);
                 } catch { }
             } else {

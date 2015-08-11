@@ -19,7 +19,7 @@ namespace plasticbagfreeportsmouth.Pages {
 
         public override string Description {
             get {
-                return "The Plastic Bag Free Portsmouth Pledge encourages businesses to voluntarily stop issuing single-use plastic shopping bags. This effort is a follow-up to the Rise Above Plastics (RAP) Coalition's successful education campaign that surrounded Portsmouth's plastic bag ordinance.* ";
+                return "The Plastic Bag Free Portsmouth Pledge encourages businesses to voluntarily stop issuing single-use plastic shopping bags. This effort is a follow-up to the Rise Above Plastics (RAP) Coalition's successful education campaign that surrounded Portsmouth's plastic bag ordinance.";
             }
         }
 
